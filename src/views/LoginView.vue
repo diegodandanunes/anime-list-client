@@ -31,14 +31,14 @@ import { useAuthStore } from '@/stores/auth'
 import InitialForm from '@/components/InitialForm.vue'
 import FeedbackMessage from '@/components/FeedbackMessage.vue'
 
+import { login } from '@/services/userService'
+import { IFormContent } from '@/types'
+
 const loadingStore = useLoadingStore()
 const authStore = useAuthStore()
 const router = useRouter()
 const loginForm = ref<InstanceType<typeof InitialForm> | null>(null)
 const hasError = ref(false)
-
-import { login } from '@/services/userService'
-import { IFormContent } from '@/types'
 
 const handleSubmitForm = async (formValues: IFormContent) => {
   try {
