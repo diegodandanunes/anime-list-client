@@ -1,13 +1,7 @@
 <template>
-    <div>
-
-    </div>
+  <div>dan da dan dan da dan dan</div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts"></script>
 
-</script>
-
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

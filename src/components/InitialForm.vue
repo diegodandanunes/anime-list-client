@@ -4,22 +4,33 @@
   >
     <slot name="formHeader"></slot>
     <form @submit.prevent="handleSubmit">
-      <input class="input mb-4" type="text" placeholder="Email" v-model="form.email" />
-      <input class="input mb-4" type="password" placeholder="Password" v-model="form.password" />
-
-      <button class="button is-primary" :class="{ 'is-loading': props.loading }">Submit</button>
+      <input
+        class="input mb-4"
+        :disabled="loading"
+        type="text"
+        placeholder="Email"
+        v-model="form.email"
+      />
+      <input
+        class="input mb-4"
+        :disabled="loading"
+        type="password"
+        placeholder="Password"
+        v-model="form.password"
+      />
+      <slot name="formFooter"></slot>
     </form>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
-
-const emits = defineEmits(['onSubmitForm'])
+import { reactive, defineExpose } from 'vue'
 
 const props = defineProps<{
   loading: boolean
 }>()
+
+const emits = defineEmits(['onSubmitForm'])
 
 const form = reactive({
   email: '',
@@ -31,9 +42,10 @@ const resetForm = () => {
   form.password = ''
 }
 
+defineExpose({ resetForm })
+
 const handleSubmit = () => {
   emits('onSubmitForm', form)
-  resetForm()
 }
 </script>
 
