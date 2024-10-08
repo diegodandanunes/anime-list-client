@@ -1,5 +1,5 @@
 <template>
-  <div>dan da dan dan da dan dan</div>
+  <div>conseguiu ne, pau no cu</div>
 </template>
 
 <script setup lang="ts"></script>

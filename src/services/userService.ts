@@ -9,3 +9,9 @@ export const login = async (form: IFormContent): Promise<ILoginResponse> => {
 
   return data
 }
+
+export const signup = async (form: IFormContent): Promise<unknown> => {
+  const data = await axios.post(`${apiUrl}/signup`, form)
+
+  return data
+}

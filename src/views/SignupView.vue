@@ -2,7 +2,7 @@
   <div class="columns">
     <div class="column">
       <InitialForm
-        ref="loginForm"
+        ref="signupForm"
         :loading="loadingStore.isLoading"
         @onSubmitForm="handleSubmitForm"
       >
@@ -11,7 +11,7 @@
         </template>
         <template v-slot:formFooter>
           <button class="button is-primary mr-2" :class="{ 'is-loading': loadingStore.isLoading }">
-            Submit
+            Register
           </button>
           <RouterLink to="/">
             <button class="button is-secondary">Back</button>
@@ -31,26 +31,26 @@ import { useAuthStore } from '@/stores/auth'
 import InitialForm from '@/components/InitialForm.vue'
 import FeedbackMessage from '@/components/FeedbackMessage.vue'
 
-import { login } from '@/services/userService'
+import { signup } from '@/services/userService'
 import { IFormContent } from '@/types'
 
 const loadingStore = useLoadingStore()
 const authStore = useAuthStore()
 const router = useRouter()
-const loginForm = ref<InstanceType<typeof InitialForm> | null>(null)
+const signupForm = ref<InstanceType<typeof InitialForm> | null>(null)
 const hasError = ref(false)
 
 const handleSubmitForm = async (formValues: IFormContent) => {
   try {
     loadingStore.startLoading()
-    await login(formValues)
+    await signup(formValues)
     authStore.login()
-    router.push('/home')
+    router.push('/')
   } catch (e) {
     hasError.value = true
   } finally {
     loadingStore.stopLoading()
-    loginForm.value?.resetForm()
+    signupForm.value?.resetForm()
   }
 }
 </script>
